@@ -1,6 +1,4 @@
-<?php 
-include("./connexion.php");
-?>
+<?php include("./connexion.php"); ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -68,23 +66,34 @@ hello
 
             <section class="container mt-5" id="Annonce">
                 <h2>Liste des Annonces disponible : </h2>
-                <div class="row row-cols-lg-4 mt-5">
-                    <div class="col">
-                        <div class="card">
-                            <img src="./images/Tanger.jpg" class="card-img-top" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">Jolie Appartement à Louer de 87 m²</h4>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="text-danger fs-3">2900 DH</h5>
-                                </div>
-                                <p class="card-text fs-5">Rte Rabat, Tanger.</p>
-                                <p class="card-text">Publié le 01/02/2023.</p>
-                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModificationModal">Modifier</a>
-                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#SuppressionModal">Supprimer</a>   
+                <div class='row row-cols-lg-4 mt-5'>
+                <?php
+                //    try{
+                //     $dbco = new PDO("mysql:host=127.0.0.1;dbname=gestion_immobilier;charset=utf8mb4;", 'root', '');
+                //     echo 'connexion reussite <br>';
+                    $table ="SELECT ImageAnnonce,TitreAnnonce,TypeAnnonce,SuperficieAnnonce,MontantAnnonce,AdresseAnnonce,DateAnnonce FROM annonce";
+                    $rest = $dbco->query($table);
+                    function CarteAnnonce($img,$titre,$type,$sup,$prix,$add,$date){
+                    return "
+                    
+                        <div class='col'>
+                            <div class='card'>
+                                <img src='$img' class='card-img-top' alt=''>
+                                <div class='card-body'>
+                                    <h4 class='card-title'>$titre à Louer de $sup m²</h4>
+                                    <div class='d-flex justify-content-between align-items-center'>
+                                        <h5 class='text-danger fs-3'>$prix DH</h5>
+                                    </div>
+                                    <p class='card-text fs-5'>$add</p>
+                                    <p class='card-text'>Publié le $date.</p>
+                                    <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
+                                    <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
 
+                                </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< Updated upstream
                 </div>
 
                 <!-- Ajout Modal -->
@@ -209,10 +218,54 @@ hello
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger">Confirmer</button>
                         </div>
+=======
+
+                    <!-- Modification Modal -->
+                    <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-body'>
+                                MOdification
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                <button type='button' class='btn btn-primary'>Save changes</button>
+                            </div>
+                            </div>
+>>>>>>> Stashed changes
                         </div>
                     </div>
-                </div>
 
+                    <!-- Suppression Modal -->
+                    <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h1 class='modal-title fs-5' id='exampleModalLabel'>Voulez-Vous Supprimer Cette Annonce ?</h1>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-danger'>Confirmer</button>
+                            </div>
+                            </div>
+                       
+                    </div>"
+                    ;}
+                    $resultat = $rest->fetchAll(PDO::FETCH_FUNC, "CarteAnnonce");
+                    print_r($resultat);
+                    print_r($resultat);
+                   
+            // }
+            
+            // catch(PDOException $e){
+            //   echo 'Erreur : ' . $e->getMessage();
+            // }
+?> 
+</div>
             </section>
 
             
