@@ -13,7 +13,7 @@
                 <nav class="navbar navbar-expand-lg navbar-dark py-2">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">
-                            <img src="black.png" alt="logo" width="120">
+                            <img src="./logo/black.png" alt="logo" width="120">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -70,19 +70,16 @@
             </section>
 
             <section class="container mt-5">
-                    <h2>Liste des Annonces disponible : </h2>
-
+                <h2>Liste des Annonces disponible : </h2>
                 <div class="row row-cols-lg-4 mt-5">
                     <div class="col">
                         <div class="card">
-                            <img src="Tanger.jpg" class="card-img-top" alt="...">
+                            <img src="./images/Tanger.jpg" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">Jolie Appartement à Louer de 87 m²</h4>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="text-danger fs-3">2900 DH</h5>
-                                    
                                 </div>
-                                
                                 <p class="card-text fs-5">Rte Rabat, Tanger.</p>
                                 <p class="card-text">Publié le 01/02/2023.</p>
                                 <a href="#" class="btn btn-success">Modifier</a>
@@ -90,9 +87,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
                 </div>
+
             </section>
         </main>
 
