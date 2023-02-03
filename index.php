@@ -45,8 +45,8 @@
         <main class="container-fluid">
             <section class="container mt-5">
                 <h2>Filtrer la liste des annonces !</h2>
-                <div class="d-flex flex-row my-5 justify-content-around">
-                    <div>
+                <div class="row row-cols-lg-3">
+                    <div class="col">
                         <h5 for="type">Categorie</h5>
                         <select class="form-select" aria-label="type">
                             <option selected>Open this select menu</option>
@@ -55,76 +55,43 @@
                         </select>
                     </div>
 
-                    <div>
+                    <div class="col">
                         <h5>Prix : </h5>
                         <div class="d-flex gap-5 w-50">
                             <input type="number" class="form-control w-75" placeholder="Min" aria-label="Min" min="0">
                             <input type="number" class="form-control w-75" placeholder="Max" aria-label="Max" min="0">
                         </div>
                     </div>
-
-                    <div class="d-flex align-items-end">
+                    
+                    <div class="col d-flex align-items-end">
                         <button class="btn btn-dark">Chercher</button>
                     </div>
                 </div>
             </section>
 
             <section class="container mt-5">
-                <div class="text-center">
                     <h2>Liste des Annonces disponible : </h2>
-                </div>
 
-                <div class="row row-cols-lg-4">
+                <div class="row row-cols-lg-4 mt-5">
                     <div class="col">
                         <div class="card">
                             <img src="Tanger.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h4 class="card-title">Jolie Appartement à Louer de 87 m²</h4>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="text-danger fs-3">2900 DH</h5>
+                                    
+                                </div>
+                                
+                                <p class="card-text fs-5">Rte Rabat, Tanger.</p>
+                                <p class="card-text">Publié le 01/02/2023.</p>
+                                <a href="#" class="btn btn-success">Modifier</a>
+                                <a href="#" class="btn btn-danger">Supprimer</a>    
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="Tanger.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="Tanger.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="Tanger.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="Tanger.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </section>
         </main>
