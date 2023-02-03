@@ -69,18 +69,24 @@
                 <?php
                     $table ="SELECT ImageAnnonce,TitreAnnonce,TypeAnnonce,SuperficieAnnonce,MontantAnnonce,AdresseAnnonce,DateAnnonce FROM annonce";
                     $rest = $dbco->query($table);
-                    function CarteAnnonce($img,$titre,$type,$sup,$prix,$add,$date){
-                    return "
+                    $resultat = $rest->fetchAll();
+                //    foreach ( $rest->fetchAll(PDO::FETCH_ASSOC) as $row){
+                   
+                //         print_r ($row);
+                      
+                //     }
+                    
+                    echo "
                         <div class='col'>
                             <div class='card'>
-                                <img src='$img' class='card-img-top' alt=''>
+                                <img src='./img/".$resultat[0]["ImageAnnonce"]."' class='card-img-top' alt='app'>
                                 <div class='card-body'>
-                                    <h4 class='card-title'>$titre à Louer de $sup m²</h4>
+                                    <h4 class='card-title'>".$resultat[0]["TitreAnnonce"]." à Louer de ".$resultat[0]["SuperficieAnnonce"]." m²</h4>
                                     <div class='d-flex justify-content-between align-items-center'>
-                                        <h5 class='text-danger fs-3'>$prix DH</h5>
+                                        <h5 class='text-danger fs-3'>** DH</h5>
                                     </div>
-                                    <p class='card-text fs-5'>$add</p>
-                                    <p class='card-text'>Publié le $date.</p>
+                                    <p class='card-text fs-5'>**</p>
+                                    <p class='card-text'>Publié le **.</p>
                                     <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
                                     <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
 
@@ -242,11 +248,12 @@
                             </div>
                             </div>
                        
-                    </div>"
-                    ;}
-                    $resultat = $rest->fetchAll(PDO::FETCH_FUNC, "CarteAnnonce");
-                    print_r($resultat);
-                    print_r($resultat);
+                    </div>";
+                   
+                    
+                  
+                    
+ 
                    
             // }
             
