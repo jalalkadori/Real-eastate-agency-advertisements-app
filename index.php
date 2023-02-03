@@ -20,7 +20,7 @@ include("./connexion.php");
                             <img src="./logo/black.png" alt="logo" width="120">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-light">
@@ -28,16 +28,10 @@ include("./connexion.php");
                                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
+                                    <a class="nav-link" href="#Annonce">Annonces</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
+                                    <a tupe"button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#AjoutModal"> + Ajouter une Annonce</a>
                                 </li>
                             </ul>
                         </div>
@@ -53,7 +47,6 @@ include("./connexion.php");
                     <div class="col">
                         <h5 for="type">Categorie</h5>
                         <select class="form-select" aria-label="type">
-                            <option selected>Open this select menu</option>
                             <option value="Location">Location</option>
                             <option value="Vente">Vente</option>
                         </select>
@@ -67,13 +60,13 @@ include("./connexion.php");
                         </div>
                     </div>
                     
-                    <div class="col d-flex align-items-end">
+                    <div class="col d-flex align-items-end border">
                         <button class="btn btn-dark">Chercher</button>
                     </div>
                 </form>
             </section>
 
-            <section class="container mt-5">
+            <section class="container mt-5" id="Annonce">
                 <h2>Liste des Annonces disponible : </h2>
                 <div class="row row-cols-lg-4 mt-5">
                     <div class="col">
@@ -94,20 +87,112 @@ include("./connexion.php");
                     </div>
                 </div>
 
+                <!-- Ajout Modal -->
+                <div class="modal fade" id="AjoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une nouvelle annonce</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="titre" class="form-label">Titre d'annonce :</label>
+                                    <input type="text" class="form-control" id="titre">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Chemin d'image: </label>
+                                    <input type="text" class="form-control" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Description" class="form-label">Description : </label>
+                                    <textarea type="text" class="form-control" id="Description"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Adresse" class="form-label">Adresse : </label>
+                                    <input type="text" class="form-control" id="Adresse">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label for="Superficie" class="form-label">Superficie : </label>
+                                        <input type="number" class="form-control" id="Superficie">
+                                    </div>
+                                    <div class="col">
+                                        <label for="Montant" class="form-label">Montant : </label>
+                                        <input type="number" class="form-control" id="Montant">
+                                    </div>
+                                    <div class="col">
+                                        <label for="Adresse" class="form-label">Adresse : </label>
+                                        <input type="date" class="form-control" id="Adresse">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Type" class="form-label">Type d'annonce : </label>
+                                    <select class="form-select" aria-label="type" id="Type">
+                                        <option value="Location">Location</option>
+                                        <option value="Vente">Vente</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark w-100">Ajouter</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Modification Modal -->
                 <div class="modal fade" id="ModificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modification de l'annonce N°</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            MOdification
+                            <form>
+                                <div class="mb-3">
+                                    <label for="titre" class="form-label">Titre d'annonce :</label>
+                                    <input type="text" class="form-control" id="titre">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Chemin d'image: </label>
+                                    <input type="text" class="form-control" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Description" class="form-label">Description : </label>
+                                    <textarea type="text" class="form-control" id="Description"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Adresse" class="form-label">Adresse : </label>
+                                    <input type="text" class="form-control" id="Adresse">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label for="Superficie" class="form-label">Superficie : </label>
+                                        <input type="number" class="form-control" id="Superficie">
+                                    </div>
+                                    <div class="col">
+                                        <label for="Montant" class="form-label">Montant : </label>
+                                        <input type="number" class="form-control" id="Montant">
+                                    </div>
+                                    <div class="col">
+                                        <label for="Adresse" class="form-label">Adresse : </label>
+                                        <input type="date" class="form-control" id="Adresse">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Type" class="form-label">Type d'annonce : </label>
+                                    <select class="form-select" aria-label="type" id="Type">
+                                        <option value="Location">Location</option>
+                                        <option value="Vente">Vente</option>
+                                    </select>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-success">Modifier</button>
                         </div>
                         </div>
                     </div>
@@ -129,9 +214,9 @@ include("./connexion.php");
                 </div>
 
             </section>
+
+            
         </main>
-
-
 
 
 
