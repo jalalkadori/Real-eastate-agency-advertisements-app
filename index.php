@@ -84,8 +84,7 @@
                                 <p class="card-text fs-5">Rte Rabat, Tanger.</p>
                                 <p class="card-text">Publié le 01/02/2023.</p>
                                 <a href="#" class="btn btn-success">Modifier</a>
-                                <a href="#" class="btn btn-danger">Supprimer</a>    
-                                <a href="#" class="btn btn-danger">Supprimer</a>    
+                                <a href="#" class="btn btn-danger">Supprimer</a>   
 
                             </div>
                         </div>
