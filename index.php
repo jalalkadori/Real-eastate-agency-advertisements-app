@@ -46,7 +46,7 @@
         <main class="container-fluid">
             <section class="container mt-5">
                 <h2>Filtrer la liste des annonces !</h2>
-                <div class="row row-cols-lg-3">
+                <form class="row row-cols-lg-3" action="#">
                     <div class="col">
                         <h5 for="type">Categorie</h5>
                         <select class="form-select" aria-label="type">
@@ -67,7 +67,7 @@
                     <div class="col d-flex align-items-end">
                         <button class="btn btn-dark">Chercher</button>
                     </div>
-                </div>
+                </form>
             </section>
 
             <section class="container mt-5">
@@ -83,10 +83,48 @@
                                 </div>
                                 <p class="card-text fs-5">Rte Rabat, Tanger.</p>
                                 <p class="card-text">Publié le 01/02/2023.</p>
-                                <a href="#" class="btn btn-success">Modifier</a>
-                                <a href="#" class="btn btn-danger">Supprimer</a>   
+                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModificationModal">Modifier</a>
+                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#SuppressionModal">Supprimer</a>   
 
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modification Modal -->
+                <div class="modal fade" id="ModificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            MOdification
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suppression Modal -->
+                <div class="modal fade" id="SuppressionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Suppression
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
                         </div>
                     </div>
                 </div>
