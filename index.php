@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
     <body>
-hello
         <header class="container-fluid bg-dark">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-dark py-2">
@@ -68,14 +67,10 @@ hello
                 <h2>Liste des Annonces disponible : </h2>
                 <div class='row row-cols-lg-4 mt-5'>
                 <?php
-                //    try{
-                //     $dbco = new PDO("mysql:host=127.0.0.1;dbname=gestion_immobilier;charset=utf8mb4;", 'root', '');
-                //     echo 'connexion reussite <br>';
                     $table ="SELECT ImageAnnonce,TitreAnnonce,TypeAnnonce,SuperficieAnnonce,MontantAnnonce,AdresseAnnonce,DateAnnonce FROM annonce";
                     $rest = $dbco->query($table);
                     function CarteAnnonce($img,$titre,$type,$sup,$prix,$add,$date){
                     return "
-                    
                         <div class='col'>
                             <div class='card'>
                                 <img src='$img' class='card-img-top' alt=''>
@@ -93,133 +88,129 @@ hello
                             </div>
                         </div>
                     </div>
-<<<<<<< Updated upstream
                 </div>
 
                 <!-- Ajout Modal -->
-                <div class="modal fade" id="AjoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une nouvelle annonce</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Ajouter une nouvelle annonce</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
-                        <div class="modal-body">
+                        <div class='modal-body'>
                             <form>
-                                <div class="mb-3">
-                                    <label for="titre" class="form-label">Titre d'annonce :</label>
-                                    <input type="text" class="form-control" id="titre">
+                                <div class='mb-3'>
+                                    <label for='titre' class='form-label'>Titre d'annonce :</label>
+                                    <input type='text' class='form-control' id='titre'>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Chemin d'image: </label>
-                                    <input type="text" class="form-control" id="image">
+                                <div class='mb-3'>
+                                    <label for='image' class='form-label'>Chemin d'image: </label>
+                                    <input type='text' class='form-control' id='image'>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Description" class="form-label">Description : </label>
-                                    <textarea type="text" class="form-control" id="Description"></textarea>
+                                <div class='mb-3'>
+                                    <label for='Description' class='form-label'>Description : </label>
+                                    <textarea type='text' class='form-control' id='Description'></textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Adresse" class="form-label">Adresse : </label>
-                                    <input type="text" class="form-control" id="Adresse">
+                                <div class='mb-3'>
+                                    <label for='Adresse' class='form-label'>Adresse : </label>
+                                    <input type='text' class='form-control' id='Adresse'>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <label for="Superficie" class="form-label">Superficie : </label>
-                                        <input type="number" class="form-control" id="Superficie">
+                                <div class='row mb-3'>
+                                    <div class='col'>
+                                        <label for='Superficie' class='form-label'>Superficie : </label>
+                                        <input type='number' class='form-control' id='Superficie'>
                                     </div>
-                                    <div class="col">
-                                        <label for="Montant" class="form-label">Montant : </label>
-                                        <input type="number" class="form-control" id="Montant">
+                                    <div class='col'>
+                                        <label for='Montant' class='form-label'>Montant : </label>
+                                        <input type='number' class='form-control' id='Montant'>
                                     </div>
-                                    <div class="col">
-                                        <label for="Adresse" class="form-label">Adresse : </label>
-                                        <input type="date" class="form-control" id="Adresse">
+                                    <div class='col'>
+                                        <label for='Adresse' class='form-label'>Adresse : </label>
+                                        <input type='date' class='form-control' id='Adresse'>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Type" class="form-label">Type d'annonce : </label>
-                                    <select class="form-select" aria-label="type" id="Type">
-                                        <option value="Location">Location</option>
-                                        <option value="Vente">Vente</option>
+                                <div class='mb-3'>
+                                    <label for='Type' class='form-label'>Type d'annonce : </label>
+                                    <select class='form-select' aria-label='type' id='Type'>
+                                        <option value='Location'>Location</option>
+                                        <option value='Vente'>Vente</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-dark w-100">Ajouter</button>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-dark w-100'>Ajouter</button>
                         </div>
                         </div>
                     </div>
                 </div>
                 <!-- Modification Modal -->
-                <div class="modal fade" id="ModificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modification de l'annonce N°</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Modification de l'annonce N°</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
-                        <div class="modal-body">
+                        <div class='modal-body'>
                             <form>
-                                <div class="mb-3">
-                                    <label for="titre" class="form-label">Titre d'annonce :</label>
-                                    <input type="text" class="form-control" id="titre">
+                                <div class='mb-3'>
+                                    <label for='titre' class='form-label'>Titre d'annonce :</label>
+                                    <input type='text' class='form-control' id='titre'>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Chemin d'image: </label>
-                                    <input type="text" class="form-control" id="image">
+                                <div class='mb-3'>
+                                    <label for='image' class='form-label'>Chemin d'image: </label>
+                                    <input type='text' class='form-control' id='image'>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Description" class="form-label">Description : </label>
-                                    <textarea type="text" class="form-control" id="Description"></textarea>
+                                <div class='mb-3'>
+                                    <label for='Description' class='form-label'>Description : </label>
+                                    <textarea type='text' class='form-control' id='Description'></textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Adresse" class="form-label">Adresse : </label>
-                                    <input type="text" class="form-control" id="Adresse">
+                                <div class='mb-3'>
+                                    <label for='Adresse' class='form-label'>Adresse : </label>
+                                    <input type='text' class='form-control' id='Adresse'>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <label for="Superficie" class="form-label">Superficie : </label>
-                                        <input type="number" class="form-control" id="Superficie">
+                                <div class='row mb-3'>
+                                    <div class='col'>
+                                        <label for='Superficie' class='form-label'>Superficie : </label>
+                                        <input type='number' class='form-control' id='Superficie'>
                                     </div>
-                                    <div class="col">
-                                        <label for="Montant" class="form-label">Montant : </label>
-                                        <input type="number" class="form-control" id="Montant">
+                                    <div class='col'>
+                                        <label for='Montant' class='form-label'>Montant : </label>
+                                        <input type='number' class='form-control' id='Montant'>
                                     </div>
-                                    <div class="col">
-                                        <label for="Adresse" class="form-label">Adresse : </label>
-                                        <input type="date" class="form-control" id="Adresse">
+                                    <div class='col'>
+                                        <label for='Adresse' class='form-label'>Adresse : </label>
+                                        <input type='date' class='form-control' id='Adresse'>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Type" class="form-label">Type d'annonce : </label>
-                                    <select class="form-select" aria-label="type" id="Type">
-                                        <option value="Location">Location</option>
-                                        <option value="Vente">Vente</option>
+                                <div class='mb-3'>
+                                    <label for='Type' class='form-label'>Type d'annonce : </label>
+                                    <select class='form-select' aria-label='type' id='Type'>
+                                        <option value='Location'>Location</option>
+                                        <option value='Vente'>Vente</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success">Modifier</button>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-success'>Modifier</button>
                         </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Suppression Modal -->
-                <div class="modal fade" id="SuppressionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Voulez-Vous Supprimer Cette Annonce ?</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Voulez-Vous Supprimer Cette Annonce ?</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger">Confirmer</button>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-danger'>Confirmer</button>
                         </div>
-=======
-
                     <!-- Modification Modal -->
                     <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                         <div class='modal-dialog'>
@@ -229,18 +220,16 @@ hello
                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
                             <div class='modal-body'>
-                                MOdification
+ 
                             </div>
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
                                 <button type='button' class='btn btn-primary'>Save changes</button>
                             </div>
                             </div>
->>>>>>> Stashed changes
                         </div>
                     </div>
 
-                    <!-- Suppression Modal -->
                     <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                         <div class='modal-dialog'>
                             <div class='modal-content'>
@@ -270,11 +259,6 @@ hello
 
             
         </main>
-
-
-
-
-
 
 
 
