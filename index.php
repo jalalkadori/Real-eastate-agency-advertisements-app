@@ -65,28 +65,21 @@
 
             <section class="container mt-5" id="Annonce">
                 <h2>Liste des Annonces disponible : </h2>
-                <div class='row row-cols-lg-4 mt-5'>
                 <?php
-                    $table ="SELECT ImageAnnonce,TitreAnnonce,TypeAnnonce,SuperficieAnnonce,MontantAnnonce,AdresseAnnonce,DateAnnonce FROM annonce";
-                    $rest = $dbco->query($table);
-                    $resultat = $rest->fetchAll();
-                //    foreach ( $rest->fetchAll(PDO::FETCH_ASSOC) as $row){
-                   
-                //         print_r ($row);
-                      
-                //     }
-                    
-                    echo "
+                    //*****prob il affiche  les cartes verticalement
+                    while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
+                        echo("
+                        <div class='row row-cols-lg-4 mt-5'>
                         <div class='col'>
                             <div class='card'>
-                                <img src='./img/".$resultat[0]["ImageAnnonce"]."' class='card-img-top' alt='app'>
+                                <img src='./img/".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
                                 <div class='card-body'>
-                                    <h4 class='card-title'>".$resultat[0]["TitreAnnonce"]." à Louer de ".$resultat[0]["SuperficieAnnonce"]." m²</h4>
+                                    <h4 class='card-title'>".$ligne["TitreAnnonce"]." à Louer de ".$ligne["SuperficieAnnonce"]." m²</h4>
                                     <div class='d-flex justify-content-between align-items-center'>
-                                        <h5 class='text-danger fs-3'>** DH</h5>
+                                        <h5 class='text-danger fs-3'>".$ligne["MontantAnnonce"]." DH</h5>
                                     </div>
-                                    <p class='card-text fs-5'>**</p>
-                                    <p class='card-text'>Publié le **.</p>
+                                    <p class='card-text fs-5'>".$ligne["AdresseAnnonce"]."</p>
+                                    <p class='card-text'>Publié le ".$ligne["DateAnnonce"].".</p>
                                     <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
                                     <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
 
@@ -94,8 +87,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </div>");
+            } 
+        // }
+    ?>
                 <!-- Ajout Modal -->
                 <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
@@ -105,52 +100,60 @@
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            <form>
+                            <form action='index.php' method='POST'>
                                 <div class='mb-3'>
                                     <label for='titre' class='form-label'>Titre d'annonce :</label>
-                                    <input type='text' class='form-control' id='titre'>
+                                    <input type='text' class='form-control' id='titre' name='titre1'>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='image' class='form-label'>Chemin d'image: </label>
-                                    <input type='text' class='form-control' id='image'>
+                                    <input type='text' class='form-control' id='image' name='image'>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Description' class='form-label'>Description : </label>
-                                    <textarea type='text' class='form-control' id='Description'></textarea>
+                                    <textarea type='text' class='form-control' id='Description' name='description'></textarea>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Adresse' class='form-label'>Adresse : </label>
-                                    <input type='text' class='form-control' id='Adresse'>
+                                    <input type='text' class='form-control' id='Adresse' name='adresse'>
                                 </div>
                                 <div class='row mb-3'>
                                     <div class='col'>
                                         <label for='Superficie' class='form-label'>Superficie : </label>
-                                        <input type='number' class='form-control' id='Superficie'>
+                                        <input type='number' class='form-control' id='Superficie' name='superficie'>
                                     </div>
                                     <div class='col'>
                                         <label for='Montant' class='form-label'>Montant : </label>
-                                        <input type='number' class='form-control' id='Montant'>
+                                        <input type='number' class='form-control' id='Montant' name='montant'>
                                     </div>
                                     <div class='col'>
                                         <label for='Adresse' class='form-label'>Adresse : </label>
-                                        <input type='date' class='form-control' id='Adresse'>
+                                        <input type='date' class='form-control' id='Adresse' name='adresse'>
                                     </div>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Type' class='form-label'>Type d'annonce : </label>
-                                    <select class='form-select' aria-label='type' id='Type'>
+                                    <select class='form-select' aria-label='type' id='Type' name='type'>
                                         <option value='Location'>Location</option>
                                         <option value='Vente'>Vente</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='submit' class='btn btn-dark w-100'>Ajouter</button>
                             </form>
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-dark w-100'>Ajouter</button>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <?php 
+                //   $requeteAjout->execute(array($_POST["titre1"],$_POST["image"],$_POST["description"],$_POST["superficie"],$_POST["adresse"],$_POST["montant"],$_POST["date"],$_POST["type"]));
+                //   $restRqAjout = $requeteAjout ->fetch();
+                 // print_r ($_POST["titre1"]);
+                 ?>
+                            
+                        
+                  
                 <!-- Modification Modal -->
                 <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
@@ -160,7 +163,7 @@
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            <form>
+                            <form action='index.php' method='POST'>
                                 <div class='mb-3'>
                                     <label for='titre' class='form-label'>Titre d'annonce :</label>
                                     <input type='text' class='form-control' id='titre'>
@@ -201,12 +204,12 @@
                             </form>
                         </div>
                         <div class='modal-footer'>
-                            <button type='button' class='btn btn-success'>Modifier</button>
+                            <button type='submit' class='btn btn-success'>Modifier</button>
                         </div>
                         </div>
                     </div>
                 </div>
-
+               
                 <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                         <div class='modal-content'>
@@ -248,20 +251,10 @@
                             </div>
                             </div>
                        
-                    </div>";
-                   
-                    
-                  
-                    
+                          
+                    </div>
  
-                   
-            // }
-            
-            // catch(PDOException $e){
-            //   echo 'Erreur : ' . $e->getMessage();
-            // }
-?> 
-</div>
+        </div>
             </section>
 
             
