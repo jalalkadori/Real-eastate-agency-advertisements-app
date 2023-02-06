@@ -7,7 +7,7 @@
     <title>IMMO HORIZON</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
+  </head>   
     <body>
         <header class="container-fluid bg-dark">
             <div class="container">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     
-                    <div class="col d-flex align-items-end border">
+                    <div class="col d-flex align-items-end">
                         <button class="btn btn-dark">Chercher</button>
                     </div>
                 </form>
@@ -67,44 +67,35 @@
                 <h2>Liste des Annonces disponible : </h2>
                 <?php
                     //*****prob il affiche  les cartes verticalement
-<<<<<<< Updated upstream
+
                     
                     if($count > 0 ){
-=======
-                    echo "<div class='row row-cols-lg-4 mt-5'>";
->>>>>>> Stashed changes
-                    while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
-                        $idAnn = $ligne["IdAnnonce"] ;
-                        echo $idAnn;
-                        echo("
-                        
-                        <div class='col'>
-                            <div class='card'>
-                                <img src='".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
-                                <div class='card-body'>
-                                    <h4 class='card-title'>".$ligne["TitreAnnonce"]." à Louer de ".$ligne["SuperficieAnnonce"]." m²</h4>
-                                    <div class='d-flex justify-content-between align-items-center'>
-                                        <h5 class='text-danger fs-3'>".$ligne["MontantAnnonce"]." DH</h5>
+                        echo "<div class='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mt-5'>";
+                        while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
+                            $idAnn = $ligne["IdAnnonce"] ;
+                            // echo $idAnn;
+                            echo("
+                                <div class='col mt-2'>
+                                    <div class='card'>
+                                        <img src='".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title'>".$ligne["TitreAnnonce"]." à Louer de ".$ligne["SuperficieAnnonce"]." m²</h5>
+                                            <div class='d-flex justify-content-between align-items-center'>
+                                                <h5 class='text-danger fs-3'>".$ligne["MontantAnnonce"]." DH</h5>
+                                            </div>
+                                            <p class='card-text'>".$ligne["AdresseAnnonce"]."</p>
+                                            <p class='card-text'>Publié le ".$ligne["DateAnnonce"].".</p>
+                                            <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
+                                            <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
+                                        </div>
                                     </div>
-                                    <p class='card-text fs-5'>".$ligne["AdresseAnnonce"]."</p>
-                                    <p class='card-text'>Publié le ".$ligne["DateAnnonce"].".</p>
-                                    <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
-                                    <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
-                                </div>
-                            </div>
-                        </div>
-<<<<<<< Updated upstream
-                    </div>
-                </div>");
-            } 
-        }
-=======
-                    
-                ");
-                } 
+                                </div>"
+                            );
+                        } 
+                    }
             echo "</div>";
     
->>>>>>> Stashed changes
+
     ?>
                 <!-- Ajout Modal -->
                 <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
