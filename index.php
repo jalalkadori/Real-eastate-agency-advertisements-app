@@ -51,9 +51,9 @@
 
                     <div class="col">
                         <h5>Prix : </h5>
-                        <div class="d-flex gap-5 w-50">
-                            <input type="number" class="form-control w-75" placeholder="Min" aria-label="Min" min="0">
-                            <input type="number" class="form-control w-75" placeholder="Max" aria-label="Max" min="0">
+                        <div class="d-flex gap-1">
+                            <input type="number" class="form-control" placeholder="Min" aria-label="Min" min="0">
+                            <input type="number" class="form-control" placeholder="Max" aria-label="Max" min="0">
                         </div>
                     </div>
                     
@@ -67,16 +67,20 @@
                 <h2>Liste des Annonces disponible : </h2>
                 <?php
                     //*****prob il affiche  les cartes verticalement
+<<<<<<< Updated upstream
                     
                     if($count > 0 ){
+=======
+                    echo "<div class='row row-cols-lg-4 mt-5'>";
+>>>>>>> Stashed changes
                     while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
                         $idAnn = $ligne["IdAnnonce"] ;
                         echo $idAnn;
                         echo("
-                        <div class='row row-cols-lg-4 mt-5'>
+                        
                         <div class='col'>
                             <div class='card'>
-                                <img src='./img/".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
+                                <img src='".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
                                 <div class='card-body'>
                                     <h4 class='card-title'>".$ligne["TitreAnnonce"]." à Louer de ".$ligne["SuperficieAnnonce"]." m²</h4>
                                     <div class='d-flex justify-content-between align-items-center'>
@@ -86,14 +90,21 @@
                                     <p class='card-text'>Publié le ".$ligne["DateAnnonce"].".</p>
                                     <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
                                     <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
-
                                 </div>
                             </div>
                         </div>
+<<<<<<< Updated upstream
                     </div>
                 </div>");
             } 
         }
+=======
+                    
+                ");
+                } 
+            echo "</div>";
+    
+>>>>>>> Stashed changes
     ?>
                 <!-- Ajout Modal -->
                 <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
