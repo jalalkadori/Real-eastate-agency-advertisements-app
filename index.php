@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>   
     <body>
-        <header class="container-fluid bg-dark">
+        <header class="container-fluid bg-dark fixed-top mb-1">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-dark py-2">
                     <div class="container-fluid">
@@ -37,9 +37,9 @@
             </div>
         </header>
         
-        <main class="container-fluid">
-            <section class="container mt-5">
-                <h2>Filtrer la liste des annonces !</h2>
+        <main class="container-fluid pt-5">
+            <section class="container pt-5">
+                <h2 class="pt-5">Filtrer la liste des annonces !</h2>
                 <form class="row row-cols-lg-3" action="#">
                     <div class="col">
                         <h5 for="type">Categorie</h5>
