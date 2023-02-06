@@ -67,7 +67,11 @@
                 <h2>Liste des Annonces disponible : </h2>
                 <?php
                     //*****prob il affiche  les cartes verticalement
+                    
+                    if($count > 0 ){
                     while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
+                        $idAnn = $ligne["IdAnnonce"] ;
+                        echo $idAnn;
                         echo("
                         <div class='row row-cols-lg-4 mt-5'>
                         <div class='col'>
@@ -89,7 +93,7 @@
                     </div>
                 </div>");
             } 
-        // }
+        }
     ?>
                 <!-- Ajout Modal -->
                 <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
@@ -100,7 +104,7 @@
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            <form action='index.php' method='POST'>
+                            <form action='' method='POST'>
                                 <div class='mb-3'>
                                     <label for='titre' class='form-label'>Titre d'annonce :</label>
                                     <input type='text' class='form-control' id='titre' name='titre1'>
@@ -127,8 +131,8 @@
                                         <input type='number' class='form-control' id='Montant' name='montant'>
                                     </div>
                                     <div class='col'>
-                                        <label for='Adresse' class='form-label'>Adresse : </label>
-                                        <input type='date' class='form-control' id='Adresse' name='adresse'>
+                                        <label for='date' class='form-label'>Date : </label>
+                                        <input type='date' class='form-control' id='date' name='date'>
                                     </div>
                                 </div>
                                 <div class='mb-3'>
@@ -140,16 +144,26 @@
                                 </div>
                             </div>
                             <div class='modal-footer'>
-                                <button type='submit' class='btn btn-dark w-100'>Ajouter</button>
+                                <button type='submit' class='btn btn-dark w-100' name='ajouter'>Ajouter</button>
                             </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php 
-                //   $requeteAjout->execute(array($_POST["titre1"],$_POST["image"],$_POST["description"],$_POST["superficie"],$_POST["adresse"],$_POST["montant"],$_POST["date"],$_POST["type"]));
-                //   $restRqAjout = $requeteAjout ->fetch();
-                 // print_r ($_POST["titre1"]);
+                if(isset($_POST['ajouter'])){//lorsque je clik sur le bouttant ajouter
+                    $titre =$_POST["titre1"];
+                    $img = $_POST["image"];
+                    $desc = $_POST["description"];
+                    $sup =$_POST["superficie"];
+                    $add = $_POST["adresse"];
+                    $montant = $_POST["montant"];
+                    $date = $_POST["date"];
+                    $type = $_POST["type"];
+
+                    $requeteAjout = "INSERT INTO `annonce` (`TitreAnnonce`, `ImageAnnonce`, `DescriptionAnnonce`, `SuperficieAnnonce`, `AdresseAnnonce`, `MontantAnnonce`, `DateAnnonce`, `TypeAnnonce`) VALUES ('$titre', '$img', '$desc', '$sup', '$add','$montant', '$date', '$type')"; // il faut qelle soit ici et pas dans l'autre fichier
+                    $dbco->exec($requeteAjout);
+                }
                  ?>
                             
                         
@@ -166,50 +180,56 @@
                             <form action='index.php' method='POST'>
                                 <div class='mb-3'>
                                     <label for='titre' class='form-label'>Titre d'annonce :</label>
-                                    <input type='text' class='form-control' id='titre'>
+                                    <input type='text' class='form-control' id='titre' name='titre'>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='image' class='form-label'>Chemin d'image: </label>
-                                    <input type='text' class='form-control' id='image'>
+                                    <input type='text' class='form-control' id='image' name='image'>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Description' class='form-label'>Description : </label>
-                                    <textarea type='text' class='form-control' id='Description'></textarea>
+                                    <textarea type='text' class='form-control' id='Description' name='description'></textarea>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Adresse' class='form-label'>Adresse : </label>
-                                    <input type='text' class='form-control' id='Adresse'>
+                                    <input type='text' class='form-control' id='Adresse' name='adresse'>
                                 </div>
                                 <div class='row mb-3'>
                                     <div class='col'>
                                         <label for='Superficie' class='form-label'>Superficie : </label>
-                                        <input type='number' class='form-control' id='Superficie'>
+                                        <input type='number' class='form-control' id='Superficie' name='Superficie'>
                                     </div>
                                     <div class='col'>
                                         <label for='Montant' class='form-label'>Montant : </label>
-                                        <input type='number' class='form-control' id='Montant'>
+                                        <input type='number' class='form-control' id='Montant' name='Montant'>
                                     </div>
                                     <div class='col'>
-                                        <label for='Adresse' class='form-label'>Adresse : </label>
-                                        <input type='date' class='form-control' id='Adresse'>
+                                        <label for='Adresse' class='form-label'>Date : </label>
+                                        <input type='date' class='form-control' id='Date' name='date'>
                                     </div>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='Type' class='form-label'>Type d'annonce : </label>
-                                    <select class='form-select' aria-label='type' id='Type'>
+                                    <select class='form-select' aria-label='type' id='Type' name='type'>
                                         <option value='Location'>Location</option>
                                         <option value='Vente'>Vente</option>
                                     </select>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class='modal-footer'>
-                            <button type='submit' class='btn btn-success'>Modifier</button>
+                            <button type='submit' class='btn btn-success' name='modifier'>Modifier</button>
                         </div>
+                        </form>
+                        <?php 
+                        if(isset($_POST["modifier"])){
+                            
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
-               
+               <!-- SuppressionModal -->
                 <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                         <div class='modal-content'>
@@ -218,7 +238,16 @@
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-footer'>
-                            <button type='button' class='btn btn-danger'>Confirmer</button>
+                            <form action="" method="POST">
+                            <button type='submit' class='btn btn-danger' name='supprimer'>Confirmer</button>
+                            </form>
+                    <?php 
+                        if(isset($_POST["supprimer"])){
+                            $requeteSupprimer = "DELETE FROM annonce WHERE IdAnnonce = '$idAnn'";//''ils sont importantes ou il supprime la dernier ligne
+                            $resultatRqSupprimer = $dbco->prepare($requeteSupprimer);
+                            $resultatRqSupprimer ->execute();
+                        }
+                    ?>
                         </div>
                     <!-- Modification Modal -->
                     <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
@@ -239,7 +268,7 @@
                         </div>
                     </div>
 
-                    <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <!-- <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                         <div class='modal-dialog'>
                             <div class='modal-content'>
                             <div class='modal-header'>
@@ -249,7 +278,7 @@
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-danger'>Confirmer</button>
                             </div>
-                            </div>
+                            </div> -->
                        
                           
                     </div>
