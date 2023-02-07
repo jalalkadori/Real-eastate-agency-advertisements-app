@@ -7,6 +7,7 @@
     <title>IMMO HORIZON</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="./javascript.js"></script>
   </head>   
     <body>
         <header class="container-fluid bg-dark fixed-top mb-1">
@@ -66,18 +67,13 @@
             <section class="container mt-5" id="Annonce">
                 <h2>Liste des Annonces disponible : </h2>
                 <?php
-                    //*****prob il affiche  les cartes verticalement
-
-                    
                     if($count > 0 ){
                         echo "<div class='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mt-5'>";
                         while ($ligne = $rest->fetch(PDO::FETCH_ASSOC)) {
-                            $idAnn = $ligne["IdAnnonce"] ;
-                            // echo $idAnn;
                             echo("
                                 <div class='col mt-2'>
                                     <div class='card'>
-                                        <img src='".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
+                                        <img src='./img/".$ligne["ImageAnnonce"]."' class='card-img-top' alt='app'>
                                         <div class='card-body'>
                                             <h5 class='card-title'>".$ligne["TitreAnnonce"]." à Louer de ".$ligne["SuperficieAnnonce"]." m²</h5>
                                             <div class='d-flex justify-content-between align-items-center'>
@@ -86,16 +82,21 @@
                                             <p class='card-text'>".$ligne["AdresseAnnonce"]."</p>
                                             <p class='card-text'>Publié le ".$ligne["DateAnnonce"].".</p>
                                             <a href='#' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#ModificationModal'>Modifier</a>
-                                            <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal'>Supprimer</a>   
+                                            
+                                            <button class='supprimerCarteId btn btn-danger' data-bs-toggle='modal' data-bs-target='#SuppressionModal' name='supprimerCarte' value=". $ligne['IdAnnonce'].">Supprimer</button> 
                                         </div>
                                     </div>
                                 </div>"
                             );
+                            
+                            if(isset($_POST["supprimerCarte"])){
+                              
+                               
+                           }
                         } 
                     }
             echo "</div>";
-    
-
+          
     ?>
                 <!-- Ajout Modal -->
                 <div class='modal fade' id='AjoutModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
@@ -241,15 +242,18 @@
                         </div>
                         <div class='modal-footer'>
                             <form action="" method="POST">
+                            <input type='hidden' id='idinp'  name='indexS' value=''></input>
                             <button type='submit' class='btn btn-danger' name='supprimer'>Confirmer</button>
                             </form>
-                    <?php 
-                        if(isset($_POST["supprimer"])){
-                            $requeteSupprimer = "DELETE FROM annonce WHERE IdAnnonce = '$idAnn'";//''ils sont importantes ou il supprime la dernier ligne
-                            $resultatRqSupprimer = $dbco->prepare($requeteSupprimer);
-                            $resultatRqSupprimer ->execute();
-                        }
-                    ?>
+                     <?php 
+                      if(isset($_POST["supprimer"])){
+                        $IdSup =$_POST['indexS'];
+                        $requeteSupprimer = "DELETE FROM annonce WHERE IdAnnonce = $IdSup";
+                        $resultatRqSupprimer = $dbco->prepare($requeteSupprimer);        
+                        $resultatRqSupprimer ->execute();
+                    }
+                    
+                    ?> 
                         </div>
                     <!-- Modification Modal -->
                     <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>

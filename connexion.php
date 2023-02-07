@@ -8,8 +8,7 @@
                 $count = $rest->rowCount(); //nbre de ligne d'une requete
                  
                 
-                
-               
+            
             }
 
             catch(PDOException $e){
