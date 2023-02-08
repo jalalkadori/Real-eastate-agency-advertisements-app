@@ -1,4 +1,6 @@
-<?php include("./connexion.php"); ?>
+<?php include("./connexion.php");
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -105,7 +107,7 @@
                             <form action='' method='POST'>
                                 <div class='mb-3'>
                                     <label for='titre' class='form-label'>Titre d'annonce :</label>
-                                    <input type='text' class='form-control' id='titre' name='titre1'>
+                                    <input type='file' class='form-control' id='titre' name='titre1'>
                                 </div>
                                 <div class='mb-3'>
                                     <label for='image' class='form-label'>Chemin d'image: </label>
@@ -166,18 +168,20 @@
                     ?>
 
                 <!-- Modification Modal -->
-               <?php ///afficher les donnees dan mondal modifier
-               if(isset($_post['modofierCarte'])){//fonctionne pas
-                $IdMod =$_POST['indexMd'];
-                $requeteMct = "SELECT * FROM annonce WHERE IdAnnonce=$IdMod";
-                $resultatRMCt = $dbco ->query($requeteMct);
-                if($resultatRMCt){
-                    $ligne = $resultatRMCt ->fetch(PDO::FETCH_ASSOC);
-                    $titreMCt = $ligne['TitreAnnonce'];
-                }
-               }
-                
-               echo "
+                <?php ///afficher les donnees dan mondal modifier
+            //    if(isset($_post['modofierCarte'])){//fonctionne pas
+            //     $IdMod =$_POST['indexMd'];
+            //     echo $IdMod;
+            //     $requeteMct = "SELECT * FROM annonce WHERE IdAnnonce=$IdMod";
+            //     $resultatRMCt = $dbco ->query($requeteMct);
+            //     $resultatRMCt->exec();
+            //     if($resultatRMCt){
+            //          $ligne = $resultatRMCt ->fetch(PDO::FETCH_ASSOC);
+            //          $_POST['titreM']=$ligne['TitreAnnonce'];
+            //         }
+            //     }
+                ?>
+           
                 <div class='modal fade' id='ModificationModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                         <div class='modal-content'>
@@ -185,52 +189,57 @@
                                 <h1 class='modal-title fs-5' id='exampleModalLabel'>Modification de l'annonce</h1>
                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
-                        <div class='modal-body'>
-                            <form action='index.php' method='POST'>
-                                <div class='mb-3'>
-                                    <label for='titre' class='form-label'>Titre d'annonce :</label>
-                                    <input type='text' class='form-control' id='titre' name='titreM' value='<?php echo '$titreMCt'?>'>
-                                </div>
-                                <div class='mb-3'>
-                                    <label for='image' class='form-label'>Chemin d'image: </label>
-                                    <input type='text'  class='form-control' id='image' name='imageM'>
-                                </div>
-                                <div class='mb-3'>
-                                    <label for='Description' class='form-label'>Description : </label>
-                                    <textarea type='text' class='form-control' id='Description' name='descriptionM'></textarea>
-                                </div>
-                                <div class='mb-3'>
-                                    <label for='Adresse' class='form-label'>Adresse : </label>
-                                    <input type='text' class='form-control' id='Adresse' name='adresseM'>
-                                </div>
-                                <div class='row mb-3'>
-                                    <div class='col'>
-                                        <label for='Superficie' class='form-label'>Superficie : </label>
-                                        <input type='number' class='form-control' id='Superficie' name='superficieM'>
-                                    </div>
-                                    <div class='col'>
-                                        <label for='Montant' class='form-label'>Montant : </label>
-                                        <input type='number' class='form-control' id='Montant' name='montantM'>
-                                    </div>
-                                    <div class='col'>
-                                        <label for='Adresse' class='form-label'>Date : </label>
-                                        <input type='date' class='form-control' id='Date' name='dateM'>
-                                    </div>
-                                </div>
-                                <div class='mb-3'>
-                                    <label for='Type' class='form-label'>Type d'annonce : </label>
-                                    <select class='form-select' aria-label='type' id='Type' name='typeM'>
-                                        <option value='Location'>Location</option>
-                                        <option value='Vente'>Vente</option>
-                                    </select>
-                                    <input id='idinpMd'  name='indexMd' value=''></input>
-                                </div>
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='submit' class='btn btn-success' name='modifier'>Modifier</button>
-                        </div>
-                        </form>";
                         
+                            <form action='index.php' method='POST'>
+                                <div class='modal-body'>
+                                    <div class='mb-3'>
+                                        <label for='titre' class='form-label'>Titre d'annonce :</label>
+                                        <input type='text' class='form-control' id='titre' name='titreM' value=''>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='image' class='form-label'>Chemin d'image: </label>
+                                        <input type='text'  class='form-control' id='image' name='imageM'>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='Description' class='form-label'>Description : </label>
+                                        <textarea type='text' class='form-control' id='Description' name='descriptionM'></textarea>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='Adresse' class='form-label'>Adresse : </label>
+                                        <input type='text' class='form-control' id='Adresse' name='adresseM'>
+                                    </div>
+                                    <div class='row mb-3'>
+                                        <div class='col'>
+                                            <label for='Superficie' class='form-label'>Superficie : </label>
+                                            <input type='number' class='form-control' id='Superficie' name='superficieM'>
+                                        </div>
+                                        <div class='col'>
+                                            <label for='Montant' class='form-label'>Montant : </label>
+                                            <input type='number' class='form-control' id='Montant' name='montantM'>
+                                        </div>
+                                        <div class='col'>
+                                            <label for='Adresse' class='form-label'>Date : </label>
+                                            <input type='date' class='form-control' id='Date' name='dateM'>
+                                        </div>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='Type' class='form-label'>Type d'annonce : </label>
+                                        <select class='form-select' aria-label='type' id='Type' name='typeM'>
+                                            <option value='Location'>Location</option>
+                                            <option value='Vente'>Vente</option>
+                                        </select>
+                                        <input id='idinpMd'  name='indexMd' value=''></input>
+                                    </div>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='submit' class='btn btn-success' name='modifier'>Modifier</button>
+                                </div>
+                            </form> 
+                        </div>  
+                    </div>
+                </div>   
+                    
+                    <?php
                            $titreM = $_POST['titreM'];
                            $imgM = $_POST['imageM'];
                            $descM = $_POST['descriptionM'];
@@ -246,10 +255,8 @@
                         $resultatRqModifier = $dbco->prepare($requeteModifier);        
                         $resultatRqModifier ->execute();
                         }
-                        ?>
-                        </div>
-                    </div>
-                </div>
+                        ?> 
+                   
                <!-- SuppressionModal -->
                 <div class='modal fade' id='SuppressionModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
