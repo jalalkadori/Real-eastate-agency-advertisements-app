@@ -4,7 +4,7 @@
                 $requeteS ="SELECT IdAnnonce,ImageAnnonce,TitreAnnonce,TypeAnnonce,SuperficieAnnonce,MontantAnnonce,AdresseAnnonce,DateAnnonce FROM annonce";
                 $rest = $dbco->prepare($requeteS);
                 $rest->execute();
-                 $count = $rest->rowCount(); //nbre de ligne d'une requete
+                $count = $rest->rowCount(); //nbre de ligne d'une requete
 
                
             }
