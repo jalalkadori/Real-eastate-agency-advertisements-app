@@ -16,7 +16,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-dark py-2">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="index.php">
                             <img src="./logo/black.png" alt="logo" width="120">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -27,14 +27,13 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-light">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home </a>
+                                    <a href="index.php" class="nav-link active" aria-current="page">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#Annonce">Annonces</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="ajout.php" type"button" class="btn btn-outline-light"> + Ajouter une
-                                        Annonce</a>
+                                    <a href="ajout.php" class="btn btn-outline-light"> + Ajouter une Annonce</a>
                                 </li>
                             </ul>
                         </div>
@@ -46,11 +45,11 @@
         <main class="container-fluid pt-5">
             <section class="container pt-5">
                 <h2 class="pt-5">Filtrer la liste des annonces !</h2>
-                <form class="row row-cols-lg-3" action="" method="POST">
+                <form class="row row-cols-1 row-cols-lg-3" action="" method="POST">
                     <div class="col">
                         <h5 for="type">Categorie</h5>
                         <select class="form-select" aria-label="type" name="categorie">
-                            <option value=""></option>
+                            <option></option>
                             <option value="Location">Location</option>
                             <option value="Vente">Vente</option>
                         </select>
@@ -59,22 +58,93 @@
                     <div class="col">
                         <h5>Prix : </h5>
                         <div class="d-flex gap-1">
-                            <input type="number" class="form-control" placeholder="Min" name="Min" min="0">
-                            <input type="number" class="form-control" placeholder="Max" name="Max" min="0">
+                            <input type="number" class="form-control" name="Min" min="0" value="<?php if (isset($_POST['Min'])) echo $_POST['Min']; ?>">
+                            <input type="number" class="form-control" name="Max" min="0" value="<?php if (isset($_POST['Max'])) echo $_POST['Max']; ?>">
                         </div>
                     </div>
 
-                    <div class="col d-flex align-items-end">
-                        <button class="btn btn-dark" type="submit" name="chercher">Chercher</button>
+                    <div class="col d-flex align-items-end mt-2">
+                        <button class="btn btn-dark w-100" type="submit" name="chercher">Chercher</button>
                     </div>
                 </form>
             </section>
             <section class="container mt-5" id="Annonce">
                 <h2>Liste des Annonces disponible : </h2>
-            <?php
-          
-            include("./Carte.php");  
-            ?>
+                <?php 
+                    if($count > 0 ){
+                        if(isset($_POST['chercher'])) {
+                            $categorie = $_POST["categorie"];
+                            $min_price = $_POST["Min"];
+                            $max_price = $_POST["Max"]; 
+
+                            if(!empty($categorie) && empty($min_price) && empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `TypeAnnonce` LIKE '$categorie'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);
+                            } 
+                            elseif(!empty($categorie) && !empty($min_price) && empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `TypeAnnonce` LIKE '$categorie' AND `MontantAnnonce` > '$min_price'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);
+                            } 
+                            elseif(!empty($categorie) && !empty($min_price) && !empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `MontantAnnonce` BETWEEN '$min_price' AND '$max_price' AND `TypeAnnonce` LIKE '$categorie'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);
+                            } 
+                            elseif(empty($categorie) && !empty($min_price) && empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `MontantAnnonce` > '$min_price'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);  
+                            }   
+                            elseif(empty($categorie) && !empty($min_price) && !empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `MontantAnnonce` BETWEEN '$min_price' AND '$max_price'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);  
+                            }   
+                            elseif(empty($categorie) && empty($min_price) && !empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `MontantAnnonce` < '$max_price'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);  
+                            }          
+                        } 
+                        else {
+                            displayCards($rest);
+                        }
+                        
+                    }
+
+                    function displayCards($arrToBeDisplayed) {
+                        echo "<div class='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mt-5'>";
+                        while ($ligne = $arrToBeDisplayed->fetch(PDO::FETCH_ASSOC)) {
+                            echo("
+                                <div class='col mt-2'>
+                                    <div class='card'>
+                                        <img src='./img/".$ligne["ImageAnnonce"]."' class='card-img-top'>
+                                        <div class='card-body'>
+                                            <h6 class='card-title'>".$ligne["TitreAnnonce"]." en ".$ligne["TypeAnnonce"]." de ".$ligne["SuperficieAnnonce"]." m²</h6>
+                                            <div class='d-flex justify-content-between align-items-center'>
+                                                <h5 class='text-danger fs-5'>".$ligne["MontantAnnonce"]." DH</h5>
+                                            </div>
+                                            <p class='fs-6'>".$ligne["AdresseAnnonce"]."</p>
+                                            <p class='fs-6'>Publié le ".$ligne["DateAnnonce"].".</p>
+                                            <a class='modifierCarteId btn btn-success' name='modifierCarte' href='./modification.php?id=".$ligne["IdAnnonce"]."'>Modifier</a>
+                                            <a class='supprimerCarteId btn btn-danger' name='supprimerCarte' href='./suppression.php?id=".$ligne["IdAnnonce"]."'>Supprimer</a>            
+                                        </div>
+                                    </div>
+                                </div>"
+                            );
+                        } 
+                        echo "</div>";
+                    }
+                        
+                ?>
             </section>
         </main>
 
