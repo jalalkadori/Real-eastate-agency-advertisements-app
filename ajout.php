@@ -108,7 +108,7 @@
 
     if(!empty($titre && $img && $desc && $sup && $add && $montant && $date && $type))
     { 
-        if(strlen($titre) < 200 && strlen($desc) > 3  && strlen($add) > 3 && $sup > 0 && $montant > 0){//vverifier
+        if(strlen($titre) < 200 && strlen($desc) > 3  && strlen($add) > 3 && $sup > 0 && $montant > 0){
             echo "L'ajout avec succées";
             $requeteAjout = "INSERT INTO `annonce` (`TitreAnnonce`, `ImageAnnonce`, `DescriptionAnnonce`, `SuperficieAnnonce`, `AdresseAnnonce`, `MontantAnnonce`, `DateAnnonce`, `TypeAnnonce`) VALUES ('$titre', '$img', '$desc', '$sup', '$add','$montant', '$date', '$type')";
             $dbco->exec($requeteAjout);   

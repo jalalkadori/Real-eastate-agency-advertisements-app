@@ -1,4 +1,8 @@
-<?php include("./connexion.php"); ?>
+<?php include("./connexion.php");
+if(isset($_GET["id"])){
+    $id= $_GET["id"];  
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,7 +11,6 @@
     <title>IMMO HORIZON | Suppression</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script defer src="./javascript.js"></script>
   </head>   
     <body>
         <header class="container-fluid bg-dark fixed-top mb-1">
@@ -38,16 +41,29 @@
                     <h2>Voulez vous supprimer l'annoonce N°</h2>
                     <div class="row">
                         <div class="col mt-2">
+                            <form action="index.php" method="POST">
                             <button class="btn btn-dark">Annuler</button>
-                            <button class="btn btn-danger">Confirmer</button>
+                            </form>
+                            <form action="" method="POST">
+                            <button class="btn btn-danger" name="supprimer">Confirmer</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </main>
            
-
+        <?php
+        
+        if (isset($_POST["supprimer"])) {
+            
+                $requeteSSup ="DELETE FROM `annonce` WHERE `IdAnnonce` = $id";
+                $resultatRSSup = $dbco->prepare($requeteSSup);
+                $resultatRSSup->execute(); 
+                header("location:./index.php");
+        }
+        
+        ?>
         
 
 
