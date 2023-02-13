@@ -41,11 +41,11 @@ if(isset($_GET["id"])){
                     <h2>Voulez vous supprimer l'annoonce N°</h2>
                     <div class="row">
                         <div class="col mt-2">
-                            <form action="index.php" method="POST">
-                            <button class="btn btn-dark">Annuler</button>
+                            <form action="index.php" method="POST" class="inline-form">
+                                <button class="btn btn-dark">Annuler</button>
                             </form>
-                            <form action="" method="POST">
-                            <button class="btn btn-danger" name="supprimer">Confirmer</button>
+                            <form action="" method="POST" class="inline-form">
+                                <button class="btn btn-danger" name="supprimer">Confirmer</button>
                             </form>
                         </div>
                     </div>

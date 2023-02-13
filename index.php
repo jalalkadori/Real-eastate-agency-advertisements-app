@@ -113,6 +113,9 @@
                                 $search_results->execute();
                                 displayCards($search_results);  
                             }          
+                            elseif(empty($categorie) && empty($min_price) && empty($max_price)) {
+                                displayCards($rest);  
+                            }          
                         } 
                         else {
                             displayCards($rest);
