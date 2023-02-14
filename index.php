@@ -95,6 +95,12 @@
                                 $search_results->execute();
                                 displayCards($search_results);
                             } 
+                            elseif(!empty($categorie) && empty($min_price) && !empty($max_price)) {
+                                $search_request = "SELECT * FROM `annonce` WHERE `TypeAnnonce` LIKE '$categorie' AND `MontantAnnonce` < '$max_price'";
+                                $search_results = $dbco->prepare($search_request);
+                                $search_results->execute();
+                                displayCards($search_results);
+                            } 
                             elseif(empty($categorie) && !empty($min_price) && empty($max_price)) {
                                 $search_request = "SELECT * FROM `annonce` WHERE `MontantAnnonce` > '$min_price'";
                                 $search_results = $dbco->prepare($search_request);
